@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="stylesheet" href="styles2.css"> 
+    <title>Carson's Portfolio</title>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">
+            <img src="your-logo2.png" alt="Logo" />
+        </div>
+        <div class="nav-links">
+            <a href="#">Home</a>
+            <a href="#resume">Resume</a>
+            <a href="#portfolio">Gallery</a>
+            <a href="#contact">Contact Form</a>
+        </div>
+        <div class="hamburger" onclick="toggleMenu()">&#9776;</div>
+    </nav>
+
+    <header>
+        <h1>Welcome to My Portfolio</h1>
+        <a href="#portfolio" class="cta-button">View My Work</a>
+    </header>
+
+    <div class="parallax">
+        <div class="overlay-text">"Bringing Ideas to Life with Technology"</div>
+    </div>
+
+    <div class="container about-section fade-in">
+        <h2>About Me</h2>
+        <p>Welcome to my portfolio, where you'll find my resume and a collection of my work from the Computer Information Technology (CITS) program.</p>
+        <h3>Skills</h3>
+        <ul class="skills">
+            <li>JavaScript</li>
+            <li>HTML/CSS</li>
+            <li>Python</li>
+        </ul>
+    </div>
+
+    <div class="parallax second">
+        <div class="overlay-text">"Driven by Passion for Development"</div>
+    </div>
+
+    <div class="container" id="resume">
+        <h2>Resume</h2>
+        <div class="resume-frame">
+            <iframe src="Resume.pdf" allowfullscreen></iframe>
+        </div>
+    </div>
+
+    <div class="container" id="contact">
+        <h2>Contact Me</h2>
+        <form action="https://formspree.io/f/your-form-id" method="POST" class="contact-form">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" placeholder="Your name" required>
+    
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="_replyto" placeholder="Your email" required>
+    
+            <label for="message">Message:</label>
+            <textarea id="message" name="message" rows="5" placeholder="Your message" required></textarea>
+    
+            <button type="submit" class="cta-button">Send Message</button>
+        </form>
+    </div>
+    
+    
+
+    <div class="parallax third">
+        <div class="overlay-text">"Explore My Projects"</div>
+    </div>
+
+    <div class="container fade-in" id="portfolio">
+        <h2>Portfolio Projects</h2>
+        <div class="carousel">
+            <button class="prev" onclick="moveSlide(-1)">&#10094;</button>
+            <div class="carousel-images" id="carouselImages">
+                <img src="placeholder1.png" alt="Project 1">
+                <img src="placeholder2.png" alt="Project 2">
+                <img src="placeholder3.png" alt="Project 3">
+                <img src="placeholder4.png" alt="Project 4">
+                <img src="placeholder5.png" alt="Project 5">
+            </div>
+            <button class="next" onclick="moveSlide(1)">&#10095;</button>
+            <div class="carousel-indicators">
+                <span class="dot" onclick="currentSlide(0)"></span>
+                <span class="dot" onclick="currentSlide(1)"></span>
+                <span class="dot" onclick="currentSlide(2)"></span>
+                <span class="dot" onclick="currentSlide(3)"></span>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <p>&copy; <span id="currentYear"></span> All Rights Reserved.</p>
+        <div class="social-links">
+            <a href="https://linkedin.com/in/yourprofile" target="_blank">
+                <img src="linkedin-icon.png" alt="LinkedIn" class="social-icon">
+            </a>
+        </div>
+    </footer>
+
+    <script>
+        let currentIndex = 0;
+
+        function moveSlide(direction) {
+            const images = document.getElementById('carouselImages');
+            const totalImages = images.children.length;
+            currentIndex = (currentIndex + direction + totalImages) % totalImages;
+            images.style.transform = 'translateX(' + (-currentIndex * 100) + '%)';
+        }
+
+        function currentSlide(index) {
+            currentIndex = index;
+            document.getElementById('carouselImages').style.transform = 'translateX(' + (-currentIndex * 100) + '%)';
+        }
+
+        function toggleMenu() {
+            const navLinks = document.querySelector('.nav-links');
+            navLinks.classList.toggle('open');
+        }
+
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+       
+        document.addEventListener("scroll", function () {
+            const elements = document.querySelectorAll(".fade-in");
+            elements.forEach((el) => {
+                const position = el.getBoundingClientRect().top;
+                if (position < window.innerHeight) {
+                    el.classList.add("visible");
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
